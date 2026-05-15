@@ -113,6 +113,16 @@ MODEL_REGISTRY_FLINT = [
 
 st.title("Lithic Flaking Classifier")
 
+st.write(''' 
+            This app will accept specific flake attributes to make predictions on whether 
+            the flake was produced via bipolar or freehand technqiues.
+            I ran different subsets of flake attributes through logistic regression, decisions trees,
+            and RGX ensemble models. The app will choose the model with the best accuracy that best
+            match the lithic attributes you import into the application.
+            If you have column names that are not identical to those used in the trained models,
+            you can choose which columns to rename/reassign once you import your dataset.
+         ''')
+
 
 uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
