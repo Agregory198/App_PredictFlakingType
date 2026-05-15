@@ -207,6 +207,10 @@ if uploaded_file is not None:
                 "No raw material column selected. "
                 "All rows will be treated as Flint/Chert/Chalcedony."
                 )
+
+    else:
+        st.error(f'There exists a raw material column but this column does not contain {material}')
+        stop()
     
 
         
