@@ -127,6 +127,12 @@ st.markdown('''
             raw material you wish to use for model prediction. If your data do not have a designated 
             raw material column, the default material used is quartz, but you may switch this 
             raw material manually to opaline.
+            \n
+            \n
+            Please refer to the CSV file here for the required column names if you wish to manually
+            change them before importing your data.
+            \n
+            https://github.com/Agregory198/App_PredictFlakingType/blob/main/data/variable_selection.csv
          ''')
 
 
