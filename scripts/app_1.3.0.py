@@ -351,7 +351,7 @@ if uploaded_file is not None:
         )
 
     except:
-        st.error(f'There was an error, please check that {material} exists in your raw material column)
+        st.error(f'There was an error, please check that {material} exists in your raw material column')
     
     
 
