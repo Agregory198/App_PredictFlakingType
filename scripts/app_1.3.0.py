@@ -210,7 +210,6 @@ if uploaded_file is not None:
 
     else:
         st.error(f'There exists a raw material column but this column does not contain {material}')
-        stop()
     
 
         
@@ -327,29 +326,32 @@ if uploaded_file is not None:
         st.write("Features used:", model_features)
 
     
+    try:
+        X = df[model_features].copy()
+        X = X.replace(r"^\s*$", np.nan, regex=True)
 
-    X = df[model_features].copy()
-    X = X.replace(r"^\s*$", np.nan, regex=True)
+        preds = model.predict(X)
+        probs = model.predict_proba(X)
 
-    preds = model.predict(X)
-    probs = model.predict_proba(X)
+        df["prediction_numeric"] = preds
+        df["prediction_label"] = np.where(df['prediction_numeric'] == 0, 'Freehand', 'Bipolar')
 
-    df["prediction_numeric"] = preds
-    df["prediction_label"] = np.where(df['prediction_numeric'] == 0, 'Freehand', 'Bipolar')
+        df["confidence"] = probs.max(axis=1)
 
-    df["confidence"] = probs.max(axis=1)
+        st.subheader("Full Results")
+        st.write(df)
 
-    st.subheader("Full Results")
-    st.write(df)
+        csv = df.to_csv(index=False).encode("utf-8")
 
-    csv = df.to_csv(index=False).encode("utf-8")
+        st.download_button(
+            "Download Predictions",
+            data=csv,
+            file_name="classified_flakes.csv",
+            mime="text/csv"
+        )
 
-    st.download_button(
-        "Download Predictions",
-        data=csv,
-        file_name="classified_flakes.csv",
-        mime="text/csv"
-    )
+    except:
+        st.error(f'There was an error, please check that {material} exists in your raw material column)
     
     
 
