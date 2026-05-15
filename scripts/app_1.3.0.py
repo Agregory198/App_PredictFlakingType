@@ -113,7 +113,7 @@ MODEL_REGISTRY_FLINT = [
 
 st.title("Lithic Flaking Classifier")
 
-st.write(''' 
+st.markdown(''' 
             This app will accept specific flake attributes to make predictions on whether 
             the flake was produced via bipolar or freehand technqiues.
             I ran different subsets of flake attributes through logistic regression, decisions trees,
@@ -121,6 +121,12 @@ st.write('''
             match the lithic attributes you import into the application.
             If you have column names that are not identical to those used in the trained models,
             you can choose which columns to rename/reassign once you import your dataset.
+            \n
+            \n
+            This app currently allows for quartz or opaline raw materials. You may choose whichever
+            raw material you wish to use for model prediction. If your data do not have a designated 
+            raw material column, the default material used is quartz, but you may switch this 
+            raw material manually to opaline.
          ''')
 
 
